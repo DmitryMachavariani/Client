@@ -4,14 +4,14 @@ import threading
 
 
 def parse(package):
-    result = []
-    if(package[0] == "login"):
-        if(package[1] == "success"):
-            result.append("Успешно вошли")
-        else:
-            result.append("Возможно, вы указали не верные данные")
+    # result = []
+    # if(package[0] == "login"):
+    #     if(package[1] == "success"):
+    #         result.append("succerr")
+    #     else:
+    #         result.append("Возможно, вы указали не верные данные")
 
-    return result
+    return package
 
 def buildpackage(type, data):
     content = [i for i in data]
@@ -30,7 +30,7 @@ def buildpackage(type, data):
             else:
                 result = parse(pickle.loads(data))
                 if len(result) > 0:
-                    return result[0]
+                    return result
                 break
     except ConnectionError as e:
         print(e)
@@ -38,7 +38,7 @@ def buildpackage(type, data):
 
 try:
     sock = socket.socket()
-    sock.connect(("", 9000))
+    sock.connect(("", 9001))
 except:
     print("Не могу подключиться")
     quit()
